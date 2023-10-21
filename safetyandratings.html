@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety and Ratings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .logo img {
+            width: 80px; /* Adjust the width of the logo as needed */
+            display: block;
+            margin-bottom: 10px; /* Add a small bottom margin for spacing */
+        }
+
+        .nav-links {
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            flex: 1;
+            padding: 150px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        .progress-container {
+            width: 200px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+            <div class="logo">
+                <img src="logolib.png" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="browse.html">Browse</a>
+                <a href="safetyandratings.html">Safety & Ratings</a>
+                <a href="#">Community</a>
+                <a href="#">Cost Management</a>
+                <a href="#">Notifications</a>
+                <a href="#">Support</a>
+                <a href="#">Account</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+    <div class="content">
+    <h1>Link Checker</h1>
+    <input type="text" id="urlInput" placeholder="Enter URL">
+    <button onclick="checkLink()">Check</button>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+    <div id="result"></div>
+</div>
+    <script>
+        function checkLink() {
+    var url = document.getElementById("urlInput").value;
+    var resultElement = document.getElementById("result");
+    var progressBar = document.getElementById("progressBar");
+    var progressContainer = document.querySelector(".progress-container");
+
+    progressContainer.style.display = "block";
+
+    var progress = 0;
+    var interval = setInterval(function() {
+        if (progress >= 100) {
+            clearInterval(interval);
+            progressBar.style.width = "100%";
+            progressBar.textContent = "100%";
+            // Simulate a delay for one minute (60000 milliseconds)
+            setTimeout(function() {
+                progressContainer.style.display = "none";
+                if (url.startsWith("http://") || url.startsWith("https://")) {
+                    // Generate a random rating between 3 and 5
+                    var randomRating = (Math.random() * (5 - 3) + 3).toFixed(1);
+                    // Generate a random safety percentage between 70 and 100
+                    var randomSafety = Math.floor(Math.random() * (100 - 70 + 1) + 70);
+                    resultElement.textContent = `This is a legitimate link with a rating of ${randomRating} and ${randomSafety}% safety.`;
+                } else {
+                    resultElement.textContent = "This link is not safe. Do not access it!";
+                }
+            }, 1000); // Simulate a delay for one second (1000 milliseconds) after the progress bar completes
+        } else {
+            progress += 1;
+            progressBar.style.width = progress + "%";
+            progressBar.textContent = progress + "%";
+        }
+    }, 300); // Simulate a one-minute wait (60000 milliseconds) for the progress bar to complete
+}
+    </script>
+</body>
+
+</html>

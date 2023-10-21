@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .logo img {
+            width: 80px; /* Adjust the width of the logo as needed */
+            display: block;
+            margin-bottom: 10px; /* Add a small bottom margin for spacing */
+        }
+
+        .nav-links {
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rankings {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .rank {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700; /* Rank label color */
+        }
+
+        .rankings .author-info,
+        .rankings .book-info {
+            text-align: center;
+        }
+
+        .author-info img {
+            width: 150px; /* Adjust the width of the author images */
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%; /* Circular shape */
+            margin-bottom: 10px;
+        }
+
+        .book-info img {
+            width: 100px; /* Adjust the width of the book images */
+            margin-bottom: 10px;
+        }
+
+        .welcome-message {
+            font-size: 36px;
+            font-weight: bold;
+            background-color: #FFD700; /* Subtle yellow background color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 5px 15px; /* Padding for the background */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+        }
+
+        .book-info .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .book-info .rating {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logolib.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="browse.html">Browse</a>
+            <a href="safetyandratings.html">Safety & Ratings</a>
+            <a href="#">Community</a>
+            <a href="#">Cost Management</a>
+            <a href="#">Notifications</a>
+            <a href="#">Support</a>
+            <a href="#">Account</a>
+            <a href="#">Settings</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="welcome-message">Hi! <span>Michelle</span>. Welcome to BookWormEase!</div>
+        <div class="rankings">
+            <div class="author-info">
+                <div class="rank">1st</div>
+                <img src="soloauthor.jpg" alt="Author 1">
+                <div>Chugong</div>
+                <div>Likes: 100</div>
+            </div>
+            <div class="author-info">
+                <div class="rank">2nd</div>
+                <img src="cloudyauthor.jpg" alt="Author 2">
+                <div>Judi Barrett</div>
+                <div>Likes: 85</div>
+            </div>
+            <div class="author-info">
+                <div class="rank">3rd</div>
+                <img src="bugslifeauthor.jpg" alt="Author 3">
+                <div>John Lasseter</div>
+                <div>Likes: 70</div>
+            </div>
+        </div>
+        <div class="rankings">
+            <div class="book-info">
+                <div class="rank">1st</div>
+                <img src="sololeveling.jpg" alt="Book 1">
+                <div class="title">Solo Leveling</div>
+                <div class="rating">Rating: 4.5 Likes: 572</div>
+            </div>
+            <div class="book-info">
+                <div class="rank">2nd</div>
+                <img src="cloudy.jpg" alt="Book 2">
+                <div class="title">Cloudy With A Chance of Meatballs</div>
+                <div class="rating">Rating: 4.2 Likes: 323</div>   
+            </div>
+            <div class="book-info">
+                <div class="rank">3rd</div>
+                <img src="bugslife.jpg" alt="Book 3">
+                <div class="title">A Bug's Life</div>
+                <div class="rating">Rating: 4.0 Likes: 224</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
