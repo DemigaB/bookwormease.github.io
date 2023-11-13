@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Management</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            transition: background-color 0.3s ease; /* Smooth transition for background color change */
+        }
+
+        .navbar.scrolled {
+            background-color: #555; /* Change background color when scrolled */
+        }
+
+        .logo img {
+            width: 80px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #expensesChart {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var expensesData = {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Monthly Expenses',
+                    backgroundColor: ['green', 'green', 'green', 'green', 'green', 'green'], // Initial color is green
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: [500, 1200, 900, 1500, 800, 1100],
+                    budget: [1000, 1000, 1000, 1000, 1000, 1000] // Add budget data for each month
+                }]
+            };
+
+            var ctx = document.getElementById('expensesChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: expensesData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.dataset.label || '';
+                                var value = context.parsed.y;
+                                var expense = context.dataset.data[context.dataIndex];
+                                var budget = context.dataset.budget[context.dataIndex];
+                                var color = (expense <= budget) ? 'green' : 'red';
+
+                                return label + ': Monthly Expense ' + expense + ', Budget Goal ' + budget;
+                            }
+                        }
+                    },
+                    backgroundColor: function (context) {
+                        var expense = context.dataset.data[context.dataIndex];
+                        var budget = context.dataset.budget[context.dataIndex];
+
+                        return (expense <= budget) ? 'green' : 'red';
+                    },
+                    borderColor: 'rgba(75, 192, 192, 1)'
+                }
+            });
+
+            var form = document.getElementById('budgetGoalsForm');
+            var budgetForm = document.getElementById('budgetForm');
+            var navbar = document.querySelector('.navbar');
+
+            // Function to handle scroll event
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            // Add event listener for scroll
+            window.addEventListener('scroll', handleScroll);
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Show the budget form
+                budgetForm.style.display = 'block';
+            });
+
+            var budgetFormSubmit = document.getElementById('budgetFormSubmit');
+
+            budgetFormSubmit.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var selectedMonth = document.getElementById('budgetMonth').value;
+                var monthlyBudget = parseFloat(document.getElementById('budgetAmount').value);
+
+                if (!isNaN(monthlyBudget)) {
+                    var dataset = myChart.data.datasets[0];
+                    var monthIndex = parseInt(selectedMonth) - 1;
+
+                    // Update the dataset with the new budget goal
+                    dataset.budget[monthIndex] = monthlyBudget;
+
+                    // Determine the color based on whether the expense is within or exceeded the budget
+                    var backgroundColor = (dataset.data[monthIndex] <= monthlyBudget) ? 'green' : 'red';
+
+                    dataset.backgroundColor[monthIndex] = backgroundColor;
+
+                    // Update the chart
+                    myChart.update();
+
+                    // Hide the form after submission
+                    budgetForm.style.display = 'none';
+
+                    // Clear the input fields after submission
+                    document.getElementById('budgetMonth').value = '';
+                    document.getElementById('budgetAmount').value = '';
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logolib.png" alt="Logo">
+        </div>
+      <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="browse.html">Browse</a>
+            <a href="safetyandratings.html">Safety & Ratings</a>
+            <a href="community.html">Community</a>
+            <a href="costmanagement.html">Cost Management</a>
+            <a href="notification.html">Notifications</a>
+            <a href="account.html">Account</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="welcome-message">Welcome to Cost Management</div>
+
+        <canvas id="expensesChart"></canvas>
+
+        <h2>Cost Tracking</h2>
+        <p>
+            Our cost management platform provides robust tools for tracking your expenses
+            and managing your budget effectively. You can monitor your spending patterns,
+            set budget goals, and receive alerts when you approach or exceed your limits.
+        </p>
+
+        <!-- Budget Goals Form -->
+        <form id="budgetGoalsForm">
+            <h2>Set Budget Goals</h2>
+            <label for="budgetMonth">Select Month:</label>
+            <select id="budgetMonth" required>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+            </select>
+
+            <button type="submit">Set Budget</button>
+        </form>
+
+        <!-- Budget Form -->
+        <div id="budgetForm">
+            <form>
+                <h2>Set Budget Goal</h2>
+                <label for="budgetAmount">Monthly Budget:</label>
+                <input type="number" id="budgetAmount" name="budgetAmount" required>
+
+                <button id="budgetFormSubmit" type="button">Set Budget</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .logo img {
+            width: 80px; /* Adjust the width of the logo as needed */
+            display: block;
+            margin-bottom: 10px; /* Add a small bottom margin for spacing */
+        }
+
+        .nav-links {
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .notification {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #e6ffe6; /* Light green background */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logolib.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="browse.html">Browse</a>
+            <a href="safetyandratings.html">Safety & Ratings</a>
+            <a href="community.html">Community</a>
+            <a href="costmanagement.html">Cost Management</a>
+            <a href="notification.html">Notifications</a>
+            <a href="account.html">Account</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Notifications</h1>
+
+        <!-- Example Notifications -->
+        <div class="notification" id="topAuthorNotification">
+        </div>
+
+        <div class="notification" id="safetyRatingNotification">
+        </div>
+
+        <div class="notification" id="communityNotification">
+        </div>
+
+        <div class="notification" id="costManagementNotification">
+        </div>
+    </div>
+
+    <script>
+        // Simulated activities
+        const activities = {
+            topAuthor: "John Doe",
+            safetyRating: "This is a legitimate link with a rating of 4.2 and 85% safety.",
+            community: "New discussion posted in 'Discussion Forums.'",
+            costManagement: "Monthly budget goal set for June."
+        };
+
+        // Display notifications based on activities
+        displayNotification("topAuthorNotification", "Top Author: " + activities.topAuthor);
+        displayNotification("safetyRatingNotification", "Safety and Ratings Result: " + activities.safetyRating);
+        displayNotification("communityNotification", "Community: " + activities.community);
+        displayNotification("costManagementNotification", "Cost Management: " + activities.costManagement);
+
+        function displayNotification(elementId, content) {
+            const notificationElement = document.getElementById(elementId);
+            notificationElement.innerHTML = `<p>${content}</p>`;
+        }
+    </script>
+</body>
+
+</html>

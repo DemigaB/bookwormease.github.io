@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .navbar {
+            height: 100vh;
+            width: 250px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .logo img {
+            width: 80px; /* Adjust the width of the logo as needed */
+            display: block;
+            margin-bottom: 10px; /* Add a small bottom margin for spacing */
+        }
+
+        .nav-links {
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+   .content {
+            flex: 1;
+            padding: 150px;
+            text-align: center;
+             display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+   .button-container{
+        display: flex;
+       flex-direction: row;
+       text-align: center;
+       gap: 10px; 
+       margin-top: 20px;
+   }     
+
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 180px;
+
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 0px 0px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%; 
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+.hidden-form {
+    display: none;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 20px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 80px; /* Set the width of the labels as needed */
+}
+
+input[type="text"],
+input[type="email"] {
+    width: calc(100% - 100px); /* Adjust the width based on label width */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+textarea {
+    width: calc(100% - 100px); /* Adjust the width based on label width */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top; /* Align the textarea to the top */
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#pollsForm .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#pollsForm .form-group label,
+#pollsForm .form-group p {
+    margin: 0;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#pollsForm .form-group p {
+    background-color: #eee;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#pollsForm .form-group p:hover {
+    background-color: #ddd;
+}
+
+#pollsResult {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+/* Style the radio buttons */
+.polls-options input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 10px; /* Adjust the spacing between the radio button and label */
+    vertical-align: middle; /* Align the radio button vertically with the label */
+    transition: 0.3s;
+}
+
+/* Style the radio buttons when checked */
+.polls-options input[type="radio"]:checked {
+    background-color: #555;
+}
+
+/* Style the radio button labels */
+.polls-options label {
+    display: flex;
+    align-items: center; /* Align the label vertically with the radio button */
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+            <div class="logo">
+                <img src="logolib.png" alt="Logo">
+            </div>
+            <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="browse.html">Browse</a>
+            <a href="safetyandratings.html">Safety & Ratings</a>
+            <a href="community.html">Community</a>
+            <a href="costmanagement.html">Cost Management</a>
+            <a href="notification.html">Notifications</a>
+            <a href="account.html">Account</a>
+        </div>
+        </div>
+
+<div class="content">
+    <div class="button-container">
+        <button id="forumsBtn" class="button-64" role="button"><span class="text">Discussion Forums</span></button>
+        <button id="clubsBtn" class="button-64" role="button"><span class="text">Book Clubs</span></button>
+        <button id="qaBtn" class="button-64" role="button"><span class="text">Reader Q&A</span></button>
+        <button id="pollsBtn" class="button-64" role="button"><span class="text">Polls and Surveys</span></button>
+    </div>
+
+  <form id="forumForm" class="hidden-form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<form id="bookClubForm" class="hidden-form">
+            <div class="form-group">
+                <label for="selectedClub">Select a Book Club:</label>
+                <select id="selectedClub" name="selectedClub">
+                    <option value="Novel Navigators">Novel Navigators</option>
+                    <option value="Chapter Chasers">Chapter Chasers</option>
+                    <option value="Literary Legends">Literary Legends</option>
+                    <!-- Add more options for other book clubs as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="joinClub()">Join Club</button>
+            </div>
+            <div id="joinMessage"></div>
+        </form>
+
+<form id="qaForm" class="hidden-form">
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <textarea id="question" name="question" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+<div id="joinMessage"></div>
+
+<form id="pollsForm" class="hidden-form">
+    <div class="form-group">
+        <label for="question">Question:</label>
+        <p id="pollsQuestion">What is your favorite book genre on BookwormEase?</p>
+    </div>
+
+ <div class="polls-options">
+    <div class="form-group">
+        <input type="radio" id="option1" name="pollOption" required>
+        <label for="option1">Mystery</label>
+    </div>
+
+    <div class="form-group">
+        <input type="radio" id="option2" name="pollOption" required>
+        <label for="option2">Science Fiction</label>
+    </div>
+
+    <!-- Add more options as needed -->
+</div>
+
+    <!-- Add more options as needed -->
+
+    <div class="form-group">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<div id="pollsResult" class="hidden-form">
+    <h2>Poll Results:</h2>
+    <p id="option1Result"></p>
+    <p id="option2Result"></p>
+    <!-- Add more options results as needed -->
+</div>
+
+</div>
+        
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const forumButton = document.getElementById('forumsBtn');
+    const forumForm = document.getElementById('forumForm');
+    const bookClubButton = document.getElementById('clubsBtn');
+    const bookClubForm = document.getElementById('bookClubForm');
+    const qaButton = document.getElementById('qaBtn');
+    const qaForm = document.getElementById('qaForm');
+    const pollsButton = document.getElementById('pollsBtn');
+    const pollsForm = document.getElementById('pollsForm');
+    const option1Button = document.getElementById('option1');
+    const option2Button = document.getElementById('option2');
+    const joinMessageContainer = document.getElementById('joinMessage');
+
+    forumButton.addEventListener('click', () => {
+        toggleForm(forumForm);
+        hideForms([bookClubForm, qaForm, pollsForm]);
+    });
+
+    bookClubButton.addEventListener('click', () => {
+        toggleForm(bookClubForm);
+        hideForms([forumForm, qaForm, pollsForm]);
+    });
+
+    qaButton.addEventListener('click', () => {
+        toggleForm(qaForm);
+        hideForms([forumForm, bookClubForm, pollsForm]);
+    });
+
+    pollsButton.addEventListener('click', () => {
+        toggleForm(pollsForm);
+        hideForms([forumForm, bookClubForm, qaForm]);
+    });
+
+    function toggleForm(form) {
+        form.classList.toggle('hidden-form');
+    }
+
+    function hideForms(forms) {
+        forms.forEach(form => {
+            form.classList.add('hidden-form');
+        });
+    }
+
+    qaForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle form submission logic (e.g., send data to server)
+        // ...
+        // Reset the form fields if needed
+        qaForm.reset();
+    });
+
+    pollsForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const selectedOption = document.querySelector('input[name="pollOption"]:checked');
+        if (selectedOption) {
+            const votesOption1 = Math.floor(Math.random() * 100);
+            const votesOption2 = Math.floor(Math.random() * 100);
+
+            option1Button.nextElementSibling.textContent = `Mystery: ${votesOption1} votes`;
+            option2Button.nextElementSibling.textContent = `Science Fiction: ${votesOption2} votes`;
+        } else {
+            alert('Please select an option before submitting.');
+        }
+    });
+
+    function joinClub() {
+        const selectedClub = selectedClubDropdown.value;
+        // TODO: Perform actions to join the selected club, e.g., send a request to the server
+        // For demonstration, just display a message indicating successful joining
+        joinMessageContainer.textContent = `Joined ${selectedClub} successfully!`;
+    }
+});
+
+    </script>
+
+</body>
+</html>
