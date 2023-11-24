@@ -133,6 +133,50 @@
                 border-color: #581845;
             }
         }
+ .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .close-btn {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
     </style>
     </head>
     <body>
@@ -141,7 +185,7 @@
                 <img src="logolib.png" alt="Logo">
             </div>
              <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="home.html">Home</a>
             <a href="browse.html">Browse</a>
             <a href="safetyandratings.html">Safety & Ratings</a>
             <a href="community.html">Community</a>
@@ -190,13 +234,13 @@
                     <td>4.0</td>
                     <td>120</td>
                 </tr>
-                 <tr class="not-featured">
+                <tr class="not-featured">
                     <td>1984</td>
                     <td>George Orwell  </td>
                     <td>3.9</td>
                     <td>100</td>
                 </tr>
-                 <tr class="not-featured">
+                <tr class="not-featured">
                     <td>The Great Gatsby</td>
                     <td>F. Scott Fitzgerald</td>
                     <td>3.9</td>
@@ -208,45 +252,106 @@
         </table>
     </div>
 
-  <script>
-    const searchInput = document.getElementById("searchInput");
-    const bookRows = document.querySelectorAll(".book-table tbody tr");
+    <!-- Modals for sample stories -->
+    <div id="soloLevelingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Solo Leveling Summary</h2>
+            <p>"Solo Leveling," a gripping South Korean web novel, unfolds in a world besieged by mysterious gates that unleash monstrous creatures upon Earth. The narrative centers around Sung Jinwoo, an E-Rank hunter in the bustling city of Seoul. As these gates bring forth supernatural threats, Sung Jinwoo grapples with the challenges of being a weak hunter, setting the stage for an epic adventure filled with danger and intrigue.<br>Sung Jinwoo's struggles extend beyond the supernatural realm as he faces personal challenges, including supporting his ailing mother and younger sister. Motivated by the need to provide for his family, Sung Jinwoo embarks on perilous dungeon raids, leading to a transformative journey. "Solo Leveling" masterfully explores themes of sacrifice, familial bonds, and the relentless pursuit of strength. With its compelling characters, intricate world-building, and a strategic evolution of Sung Jinwoo, the novel captivates readers with a rich blend of action, suspense, and emotional depth, making it a standout in the fantasy genre.</p>
+        </div>
+    </div>
 
-    searchInput.addEventListener("input", function () {
-        const searchTerm = searchInput.value.toLowerCase();
-        bookRows.forEach(row => {
-            let found = false;
-            row.querySelectorAll("td").forEach(cell => {
-                const cellText = cell.textContent.toLowerCase();
-                if (cellText.includes(searchTerm)) {
-                    found = true;
+    <div id="cloudyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Cloudy With A Chance of Meatballs Summary</h2>
+            <p>"Cloudy with a Chance of Meatballs" takes readers on a whimsical journey to the town of Chewandswallow, where the extraordinary becomes ordinary. The narrative introduces Flint Lockwood, a young inventor with dreams that lead to unexpected consequences. In this charming town, food falls from the sky like rain, setting the stage for a delightful tale filled with culinary wonders and unforeseen challenges.<br>As readers delve into the narrative, they follow Flint Lockwood's adventures as he grapples with the repercussions of his invention that turns water into food. The story unfolds with culinary marvels and unexpected challenges, blending humor and imagination. "Cloudy with a Chance of Meatballs" explores the consequences of unchecked creativity, turning everyday occurrences into extraordinary adventures, making it a captivating and enjoyable tale for readers of all ages.</p>
+        </div>
+    </div>
+
+     <div id="bugsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>A Bug's Life Summary</h2>
+            <p>"A Bug's Life" immerses audiences in the vibrant and miniature world of insects, where the protagonist, Flik, embarks on a remarkable journey. Set against the backdrop of an ant colony, Flik is an inventive and optimistic individual who dreams of making a difference. The narrative unfolds as Flik sets out to recruit a group of warrior insects to save his colony from the oppressive grasshoppers, showcasing themes of courage and determination.<br>Central to the story is the theme of friendship as Flik forms an unlikely alliance with a group of circus insects. Together, they confront challenges, embrace their individual strengths, and learn the value of collaboration. "A Bug's Life" delivers a heartwarming message about overcoming adversity and celebrating diversity. With stunning animation, endearing characters, and a compelling narrative, the film captures the imaginations of audiences, both young and old, making it a timeless classic in the world of animated cinema.</p>
+        </div>
+    </div>
+
+     <div id="MockingbirdModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>To Kill a Mockingbird Summary</h2>
+            <p>To Kill a Mockingbird" is a classic novel written by Harper Lee. Set in the racially charged atmosphere of the American South during the 1930s, the story unfolds through the eyes of Scout Finch, a young girl, and her brother Jem. Their father, Atticus Finch, is a principled lawyer who defends Tom Robinson, a Black man wrongly accused of raping a white woman. The novel explores themes of racial injustice, moral growth, and compassion. As Scout and Jem witness the trial and its aftermath, they grapple with the harsh realities of prejudice and discrimination. The narrative, rich in symbolism and social commentary, remains a poignant exploration of human morality and the pursuit of justice.<br>In a coming-of-age narrative, "To Kill a Mockingbird" delves into the complexities of morality and empathy. Through Scout's observations, readers witness the impact of racial prejudice on society and the profound lessons of compassion taught by Atticus. The title itself is a metaphor, suggesting that harming innocent beings, metaphorical 'mockingbirds,' is a grave injustice. Harper Lee's timeless work continues to be a powerful reflection on the enduring struggle for justice and the importance of understanding and empathy in the face of prejudice.</p>
+        </div>
+    </div>
+    <div id="1984Modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>1984 Summary</h2>
+            <p>"1984" by George Orwell presents a nightmarish vision of a future society where individual freedom and truth have been obliterated in the pursuit of absolute power. The narrative unfolds in a world dominated by the Party, led by the enigmatic figure of Big Brother. Orwell explores the devastating impact of mass surveillance, censorship, and the rewriting of history on the lives of ordinary citizens like Winston Smith. The constant monitoring of citizens' thoughts and behaviors, coupled with the manipulation of information, creates an environment of fear and conformity.
+<br>
+Winston's journey serves as a poignant exploration of the human spirit's resistance against oppressive systems. As he grapples with forbidden thoughts and emotions, Orwell delves into the psychological toll of living under a regime that seeks to control not only actions but also thoughts. "1984" remains a timeless and relevant work, serving as a stark reminder of the importance of safeguarding individual liberties and resisting the encroachment of authoritarian power. Orwell's cautionary tale continues to resonate, urging readers to remain vigilant against threats to freedom and the manipulation of truth in the modern world.</p>
+        </div>
+    </div>
+    <div id="gatsbyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>The Great Gatsby Summary</h2>
+            <p>"The Great Gatsby" by F. Scott Fitzgerald is a classic exploration of the American Dream set against the backdrop of the Roaring Twenties. The novel follows the mysterious millionaire Jay Gatsby, who throws extravagant parties in the hope of rekindling a past romance with Daisy Buchanan. Through the eyes of Nick Carraway, the narrator, Fitzgerald paints a vivid picture of the excesses and moral decay of the Jazz Age. The story delves into themes of wealth, love, and the elusive nature of the American Dream.
+<br>
+Gatsby's unrequited love for Daisy and his relentless pursuit of success serve as a commentary on the emptiness of materialism and the illusions of social class. The novel also reflects on the corrupting influence of wealth and the consequences of living in pursuit of an idealized past. Fitzgerald's prose is both lyrical and critical, offering a nuanced portrayal of a society grappling with its own contradictions. "The Great Gatsby" remains a timeless examination of the complexities of human nature and the enduring allure and disillusionment of the American Dream.</p>
+        </div>
+    </div>
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const bookRows = document.querySelectorAll(".book-table tbody tr");
+
+        searchInput.addEventListener("input", function () {
+            const searchTerm = searchInput.value.toLowerCase();
+            bookRows.forEach(row => {
+                let found = false;
+                row.querySelectorAll("td").forEach(cell => {
+                    const cellText = cell.textContent.toLowerCase();
+                    if (cellText.includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+                if (found) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
                 }
             });
-            if (found) {
-                row.style.display = "table-row";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    });
-
-    // Add "VISIT ME" buttons to each row
-    bookRows.forEach(row => {
-        const visitButton = document.createElement("button");
-        visitButton.innerText = "VISIT ME";
-        visitButton.addEventListener("click", function () {
-            // Handle the button click event here
-            // You can customize the action for the button click
-            console.log("VISIT ME button clicked for row: ", row);
         });
 
-        const actionCell = document.createElement("td");
-        actionCell.appendChild(visitButton);
+        // Add "VISIT ME" buttons to each row
+        bookRows.forEach((row, index) => {
+            const visitButton = document.createElement("button");
+            visitButton.innerText = "VIEW SUMMARY";
+            visitButton.addEventListener("click", function () {
+                // Handle the button click event here
+                // You can customize the action for the button click
+                openModal(index);
+            });
 
-        row.appendChild(actionCell);
-    });
-</script>
+            const actionCell = document.createElement("td");
+            actionCell.appendChild(visitButton);
 
+            row.appendChild(actionCell);
+        });
+
+        function openModal(index) {
+            const modals = document.querySelectorAll(".modal");
+            modals[index].style.display = "flex";
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll(".modal");
+            modals.forEach(modal => {
+                modal.style.display = "none";
+            });
+        }
+    </script>
 </body>
 
 </html>
